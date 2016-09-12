@@ -51,15 +51,12 @@ module DataWorks
   private
 
     def add_model(method_name, *args)
-      if method_name =~ /\Aadd_(\w+)s\Z/
+      if method_name =~ /\Aadd_(\w+)\Z/
         model_name = $1
-        many = true
-      elsif method_name =~ /\Aadd_(\w+)\Z/
-        model_name = $1
-        many = false
+        many = args[0].kind_of? Integer
       end
       if model_name
-        grafter = Grafter.new(self, model_name)
+        grafter = Grafter.new(self, (many ? model_name.singularize : model_name))
         if many
           grafter.add_many(*args)
         else
