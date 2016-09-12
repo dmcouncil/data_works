@@ -24,7 +24,7 @@ describe TheDataWorks do
         expect { data.add_addresses(3) }.to change(PetProfile, :count).by(1)
       end
       it 'creates a new Pet record' do# required parent for PetProfile
-        expect { data.add_addresss(3) }.to change(Pet, :count).by(1)
+        expect { data.add_addresses(3) }.to change(Pet, :count).by(1)
       end
     end
   end
