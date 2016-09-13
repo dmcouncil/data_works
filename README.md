@@ -255,10 +255,38 @@ Or we could use the synonym:
 
 ### Adding Multiple Objects
 
-You can factory many objects at once:
+You can factory many objects at once by passing an integer count as the first argument to `add_`
+
+DataWorks treats any call to `add_` with an integer as the first argument as an attempt to create
+multiple objects. For clarity and readability DataWorks allows you to use the plural name of the
+models being created. This is not required
+
+Given
 
     data = TheDataWorks.new
+
     data.add_schools(10)
+
+and
+
+    data.add_school(10)
+
+Will both create 10 school records.
+
+Plural model names are converted to singular using the `ActiveSupport` inflections module. If you
+need to specify any additional inflection rules you can add them in your test configuration. For
+reference here is the example given in the Rails documentation.
+
+```ruby
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.plural /^(ox)$/i, '\1\2en'
+  inflect.singular /^(ox)en/i, '\1'
+
+  inflect.irregular 'octopus', 'octopi'
+
+  inflect.uncountable 'equipment'
+end
+```
 
 ### Avoiding Object Reuse
 
@@ -464,7 +492,6 @@ you can add a convenience function here.
 ## Issues
 
 * DataWorks does not yet work with namespaced models.
-* DataWorks does not yet work with models whose singular name ends in s.
 * DataWorks does not support factory traits
 * DataWorks does not allow associations where the foreign key name is not the same as the class name
 * The visualization component uses respond_to in verifying associations, which is not the most robust method if has_many is missing or with :through associations.
