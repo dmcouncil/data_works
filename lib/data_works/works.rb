@@ -40,8 +40,14 @@ module DataWorks
       @current_default.delete(model)
     end
 
-    def set_restriction(for_model:, to:)
-      @bounding_models[for_model] = to
+    def set_restriction(for_model:, to:, &block)
+      if block_given?
+        @bounding_models[for_model] = to
+        block.call
+        clear_restriction_for(for_model)
+      elsif
+        @bounding_models[for_model] = to
+      end
     end
 
     def clear_restriction_for(model)
