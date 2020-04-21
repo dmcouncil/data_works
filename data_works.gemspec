@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'launchy', '~> 2.4'
 
   s.add_development_dependency "bundler", "~> 1.9"
-  s.add_development_dependency "rake", "~> 10.4"
+  s.add_development_dependency "rake"
   s.add_development_dependency "database_cleaner", "~> 1.4.0"
   s.add_development_dependency "rspec"
   s.add_development_dependency "sqlite3"
