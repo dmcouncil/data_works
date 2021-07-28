@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors       = ["Wyatt Greene", "Anne Geiersbach", "Dennis Chan", "Luke Inglis"]
   s.email         = ["dev@dmgroupk12.com"]
   s.summary       = %q{Reducing the complexity of testing complex data models }
-  s.description   = %q{DataWorks makes it easier to work with FactoryGirl in the context of a complex data model.}
+  s.description   = %q{DataWorks makes it easier to work with FactoryBot in the context of a complex data model.}
   s.homepage      = 'https://github.com/dmcouncil/data_works'
   s.licenses      = ["MIT", "Copyright (c) 2018 District Management Group"]
 
@@ -17,19 +17,21 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
 
-  s.add_dependency "activerecord", "~> 4.1"
-  s.add_dependency "activesupport", "~> 4.1"
-  s.add_dependency 'factory_girl', '>= 3.0'
+  # Most of the below must match the rails app
+
+  s.add_dependency 'activerecord', '5.2.6'
+  s.add_dependency 'activesupport', '5.2.6'
+  s.add_dependency 'factory_bot'
   s.add_dependency 'graphviz', '~> 0.1.0'
   s.add_dependency 'launchy', '~> 2.4'
 
-  s.add_development_dependency "bundler", "~> 1.9"
-  s.add_development_dependency "rake"
-  s.add_development_dependency "database_cleaner", "~> 1.4.0"
-  s.add_development_dependency "rspec"
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency "pry"
-  s.add_development_dependency "guard"
-  s.add_development_dependency "guard-rspec"
-  s.add_development_dependency "active_hash", "~> 1.5.0"
+  s.add_development_dependency 'bundler'
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'pry'
+  s.add_development_dependency 'guard'
+  s.add_development_dependency 'guard-rspec'
+  s.add_development_dependency 'active_hash'
 end

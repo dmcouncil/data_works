@@ -1,6 +1,6 @@
 # DataWorks
 
-DataWorks makes it easier to work with FactoryGirl in the context of a complex
+DataWorks makes it easier to work with FactoryBot in the context of a complex
 data model.
 
 DataWorks has these benefits:
@@ -155,8 +155,8 @@ parent models.
 DataWorks solves this problem by following one simple rule:  **by default, reuse
 objects that already exist.**
 
-When using FactoryGirl, a factory only concerns itself with its particular
-neighborhood of the data model.  Since FactoryGirl factories do not know
+When using FactoryBot, a factory only concerns itself with its particular
+neighborhood of the data model.  Since FactoryBot factories do not know
 the big picture, their default is not to reuse existing objects but create
 new ones.  This results in the proliferation of unwanted objects.
 
@@ -166,9 +166,9 @@ reuse objects that already exist unless explicitly told otherwise.
 
 ### Implementation
 
-DataWorks exists as a layer on top of FactoryGirl.  DataWorks assumes that
-you have FactoryGirl factories for each model and that they create valid
-objects.  DataWorks always uses a create strategy with FactoryGirl.
+DataWorks exists as a layer on top of FactoryBot.  DataWorks assumes that
+you have FactoryBot factories for each model and that they create valid
+objects.  DataWorks always uses a create strategy with FactoryBot.
 
 ### Benefits
 
@@ -458,8 +458,8 @@ end
 ```
 
 `config.necessary_parents` is where you tell DataWorks which other factories
-must be created when you create a particular factory.  Because FactoryGirl
-causes a proliferation of extra objects, DataWorks does not allow FactoryGirl
+must be created when you create a particular factory.  Because FactoryBot
+causes a proliferation of extra objects, DataWorks does not allow FactoryBot
 to create necessary associated objects.  Instead, DataWorks will create the
 necessary parent objects and pass them down into the factory, ensuring that
 too many parent objects do not get created.
