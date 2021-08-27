@@ -22,8 +22,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'activerecord', '5.2.6'
   s.add_dependency 'activesupport', '5.2.6'
   s.add_dependency 'factory_bot'
-  s.add_dependency 'graphviz', '~> 0.1.0'
-  s.add_dependency 'launchy', '~> 2.4'
+  s.add_dependency 'graphviz', '~> 0' # 1.0 breaks things
+  s.add_dependency 'launchy'
 
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake'
