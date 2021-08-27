@@ -1,8 +1,11 @@
 #*******************************************************************************
 #  For testing basic associations.
 #*******************************************************************************
+class ApplicationRecord < ActiveRecord::Base
+  self.abstract_class = true
+end
 
-class Pet < ActiveRecord::Base
+class Pet < ApplicationRecord
   has_many :toys
   has_one :pet_tag
   has_one :pet_profile
@@ -13,23 +16,23 @@ class Pet < ActiveRecord::Base
   has_many :pet_sitters, through: :pet_sitting_patronages
 end
 
-class Toy < ActiveRecord::Base
+class Toy < ApplicationRecord
   validates  :name, length: { minimum: 3 }
   belongs_to :pet
 end
 
-class PetTag < ActiveRecord::Base
+class PetTag < ApplicationRecord
   belongs_to :pet
 end
 
-class PetFood < ActiveRecord::Base
+class PetFood < ApplicationRecord
   # Rails 3 expects the join table to be called pet_foods_pets
   # Rails 4 expects the join table to be called pet_foods_pets
   # We explicitly name the join table so that this code works with both Rails 3 and Rails 4.
   has_and_belongs_to_many :pets, join_table: 'pet_foods_pets'
 end
 
-class Agency < ActiveRecord::Base
+class Agency < ApplicationRecord
   has_many :pet_sitters
 end
 
@@ -40,7 +43,7 @@ class Kind < ActiveHash::Base
   ]
 end
 
-class PetSitter < ActiveRecord::Base
+class PetSitter < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :kind
   belongs_to :agency
@@ -48,17 +51,17 @@ class PetSitter < ActiveRecord::Base
   has_many :pets, through: :pet_sitting_patronages
 end
 
-class PetSittingPatronage < ActiveRecord::Base
+class PetSittingPatronage < ApplicationRecord
   belongs_to :pet
   belongs_to :pet_sitter
 end
 
-class PetProfile < ActiveRecord::Base
+class PetProfile < ApplicationRecord
   belongs_to :pet
   has_one :address
 end
 
-class Address < ActiveRecord::Base
+class Address < ApplicationRecord
   belongs_to :pet_profile
 end
 
@@ -66,16 +69,16 @@ end
 #  For testing polymorphic associations and custom-named foreign keys.
 #
 
-class Picture < ActiveRecord::Base
+class Picture < ApplicationRecord
   belongs_to :imageable, polymorphic: true
   belongs_to :album, foreign_key: 'picture_album_id'
 end
 
-class Product < ActiveRecord::Base
+class Product < ApplicationRecord
   has_many :pictures, as: :imageable
 end
 
-class Album < ActiveRecord::Base
+class Album < ApplicationRecord
   has_many :pictures, foreign_key: 'picture_album_id'
 end
 
@@ -85,22 +88,22 @@ end
 # #  For testing denormalized data structures.
 # #
 
-# class Owner < ActiveRecord::Base
+# class Owner < ApplicationRecord
 #   has_many :vehicles
 #   has_many :amenities  # this is not normalized, you wouldn't normally do this
 # end
 
-# class Vehicle < ActiveRecord::Base
+# class Vehicle < ApplicationRecord
 #   has_many :amenities
 #   belongs_to  :owner
 # end
 
-# class Amenity < ActiveRecord::Base
+# class Amenity < ApplicationRecord
 #   belongs_to :vehicle
 #   belongs_to :owner  # this is not normalized, you wouldn't normally do this
 #   has_one :warranty
 # end
 
-# class Warranty < ActiveRecord::Base
+# class Warranty < ApplicationRecord
 #   belongs_to :amenity
 # end

@@ -16,7 +16,8 @@ rdoc
 spec/reports
 test/tmp
 test/version_tmp
-tmp
+tmp/*
+!tmp/.gitkeep
 *.bundle
 *.so
 *.o

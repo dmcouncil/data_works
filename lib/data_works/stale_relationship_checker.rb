@@ -78,7 +78,7 @@ module DataWorks
       def all_active_record_classes
         @all_classes ||= begin
           Rails.application.eager_load!
-          ActiveRecord::Base.send(:descendants)
+          ActiveRecord::Base.send(:descendants).reject{ |model| model.name == 'ApplicationRecord' } # for Rails 5+
         end
       end
 
