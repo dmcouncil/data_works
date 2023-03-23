@@ -9,14 +9,14 @@ module DataWorks
     end
 
     # we expose the public interface here
-    def method_missing(method_name, *args, &block)
+    def method_missing(method_name, *args, **kwargs, &block)
       method_name = method_name.to_s
       if method_name =~ /\A(add_|the_)(\w+)\Z/ ||
          method_name =~ /\A(\w+)(\d+)\Z/ ||
          method_name =~ /\Aset_(current_default|restriction)\Z/ ||
          method_name =~ /\Aclear_(current_default|restriction)_for\Z/ ||
          method_name == 'visualize'
-        @works.send(method_name, *args, &block)
+        @works.send(method_name, *args, **kwargs, &block)
       else
         raise NoMethodError.new("#{method_name} method not found in data works")
       end

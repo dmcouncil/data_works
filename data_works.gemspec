@@ -19,8 +19,10 @@ Gem::Specification.new do |s|
 
   # Most of the below must match the rails app
 
-  s.add_dependency 'activerecord', '5.2.6'
-  s.add_dependency 'activesupport', '5.2.6'
+  s.required_ruby_version = '>= 3.0.0'
+
+  s.add_dependency 'activerecord', '>= 4.2', '< 8'
+  s.add_dependency 'activesupport', '>= 4.2', '< 8'
   s.add_dependency 'factory_bot'
   s.add_dependency 'graphviz', '~> 0' # 1.0 breaks things
   s.add_dependency 'launchy'
