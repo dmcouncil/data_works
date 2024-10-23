@@ -13,8 +13,7 @@ Gem::Specification.new do |s|
   s.homepage      = 'https://github.com/dmcouncil/data_works'
   s.licenses      = ["MIT", "Copyright (c) 2018 District Management Group"]
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.files         = Dir.glob("lib/**/*", File::FNM_DOTMATCH) + ['data_works.gemspec']
   s.require_paths = ["lib"]
 
   # Most of the below must match the rails app
